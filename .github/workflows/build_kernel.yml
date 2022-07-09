@@ -1,0 +1,33 @@
+name: Build kernel (gcc)
+
+on:
+  workflow_dispatch:
+
+env:
+  Kernel_Link: https://github.com/AndVer0/android_kernel_samsung_m10lte
+  GCC: https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9
+  
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@master
+                               
+       - name: Build
+         run: |
+              sudo apt update && sudo apt install git wget make zip -y
+              cd && git clone --depth=1 $Kernel_Link kernel
+              cd /opt && git clone --depth=1 $GCC gcc
+              cd && cd kernel
+              bash *.sh && rm -rf .config && wget https://raw.githubusercontent.com/AndVer0/G/main/.config     
+              export ANDROID_MAJOR_VERSION=q && make CONFIG_SECTION_MISMATCH_WARN_ONLY=y ARCH=arm64 -j16 
+              zip kernel.zip arch/arm64/boot/Image
+              
+       - name: Save
+         uses: actions/upload-artifact@v3
+         with:
+            name: kernel.zip
+            path: /home/runner/kernel/kernel.zip
+            retention-days: 5
