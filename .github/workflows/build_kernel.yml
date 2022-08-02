@@ -17,7 +17,7 @@ jobs:
                                
        - name: Build
          run: |
-              sudo apt update && sudo apt install git wget make zip -y
+              sudo apt update && sudo apt install git wget make p7zip-full p7zip-rar -y
               cd && git clone --depth=1 $Kernel_Link kernel
               cd /opt && git clone --depth=1 $GCC gcc
               cd && cd kernel
