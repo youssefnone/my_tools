@@ -22,6 +22,9 @@ jobs:
               cd /opt && git clone --depth=1 $GCC gcc
               cd && cd kernel
               bash *.sh
+              mv arch/arm64/boot/Image $(pwd)
+              mv Image AK
+              zip PKernel.zip $(pwd)/AK
               
        - name: Save
          uses: actions/upload-artifact@v3
