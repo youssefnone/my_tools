@@ -21,8 +21,7 @@ jobs:
               cd && git clone --depth=1 $Kernel_Link kernel
               cd /opt && git clone --depth=1 $GCC gcc
               cd && cd kernel
-              bash *.sh && rm -rf .config && wget https://raw.githubusercontent.com/Hostfl/m10lte_config/main/.config     
-              export ANDROID_MAJOR_VERSION=q && make CONFIG_SECTION_MISMATCH_WARN_ONLY=y ARCH=arm64 -j16 
+              bash *.sh && export ANDROID_MAJOR_VERSION=q && make CONFIG_SECTION_MISMATCH_WARN_ONLY=y ARCH=arm64 -j160 
               zip kernel.zip arch/arm64/boot/Image
               
        - name: Save
