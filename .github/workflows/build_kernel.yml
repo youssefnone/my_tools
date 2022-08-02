@@ -18,7 +18,7 @@ jobs:
        - name: Build
          run: |
               sudo apt update && sudo apt install git wget make zip -y
-              cd && git clone --depth=1 $Kernel_Link kernel
+              cd && git clone --depth=1 $Kernel_Link -b PKernel kernel
               cd /opt && git clone --depth=1 $GCC gcc
               cd && cd kernel
               bash *.sh
