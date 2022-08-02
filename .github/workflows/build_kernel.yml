@@ -21,13 +21,11 @@ jobs:
               cd && git clone --depth=1 $Kernel_Link kernel
               cd /opt && git clone --depth=1 $GCC gcc
               cd && cd kernel
-              bash *.sh
-              cp arch/arm64/boot/Image AK/
-              zip kernel.zip /home/runner/kernel/AK/*
+              bash *.sh             
               
        - name: Save
          uses: actions/upload-artifact@v3
          with:
-            name: kernel.zip
-            path: /home/runner/kernel/kernel.zip
+            name: PKernel.zip
+            path: /home/runner/kernel/PKernel.zip
             retention-days: 5
