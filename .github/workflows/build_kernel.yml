@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  Kernel_Link: https://github.com/Hostfl/android_kernel_samsung_m10lte -b PKernel
-  GCC: https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9
+  Kernel_Link: https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870 -b twrp
+  GCC: https://github.com/adekmaulana/aarch64-linux-android
   
 jobs:
   build:
@@ -19,13 +19,15 @@ jobs:
          run: |
               sudo apt update && sudo apt install git wget make zip -y
               cd && git clone --depth=1 $Kernel_Link kernel
-              cd /opt && git clone --depth=1 $GCC gcc
-              cd && cd kernel
-              bash *.sh             
+              git clone --depth=1 $GCC /opt/gcc && gcc1=/opt/gcc/bin/aarch64-linux-android-
+              cd && cd kernel && sed -i '4s/.*/export CROSS_COMPILE= $gcc1/' build_kernel.sh
+              bash *.sh
+              ls arch/arm64/boot
+              zip -r kernel.zip arch/arm64/boot/Image
               
        - name: Save
          uses: actions/upload-artifact@v3
          with:
-            name: PKernel.zip
-            path: /home/runner/kernel/PKernel.zip
+            name: kernel.zip
+            path: /home/runner/kernel/kernel.zip
             retention-days: 5
