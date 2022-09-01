@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  Kernel_Link: https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870 -b twrp
+  Kernel_Link: https://github.com/n7105/android_kernel_samsung_m10lte
   GCC: https://github.com/adekmaulana/aarch64-linux-android
   
 jobs:
@@ -19,9 +19,8 @@ jobs:
          run: |
               sudo apt update && sudo apt install git wget make ccache zip -y
               cd && git clone --depth=1 $Kernel_Link kernel
-              git clone --depth=1 $GCC /opt/gcc && gcc1=/opt/gcc/bin/aarch64-linux-android-
-              cd && cd kernel && sed -i '4s/.*/export CROSS_COMPILE= $gcc1/' build_kernel.sh
-              make exynos7870-j7velte_defconfig && bash *.sh
+              git clone --depth=1 $GCC /opt/gcc
+              make exynos7870-m10lte_defconfig && bash *.sh
               ls arch/arm64/boot
               zip -r kernel.zip arch/arm64/boot/Image
               
