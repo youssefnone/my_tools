@@ -18,7 +18,7 @@ jobs:
        - name: Build
          run: |
               sudo apt update && sudo apt install git wget make ccache zip -y
-              cd && git clone --depth=1 $Kernel_Link kernel
+              cd && git clone --depth=1 $Kernel_Link kernel && cd kernel
               git clone --depth=1 $GCC /opt/gcc
               make exynos7870-m10lte_defconfig && bash *.sh
               ls arch/arm64/boot
