@@ -5,7 +5,7 @@ on:
 
 env:
   Kernel_Link: https://github.com/n7105/android_kernel_samsung_m10lte
-  GCC: https://github.com/adekmaulana/aarch64-linux-android
+  GCC: https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9
   
 jobs:
   build:
