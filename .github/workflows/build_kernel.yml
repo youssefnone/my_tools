@@ -25,8 +25,8 @@ jobs:
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
-           files: /home/runner/kernel/arch/arm64/boot/zImage
-           name: kernel
+           files: arch/arm64/boot/zImage
+           name: zImage
            tag_name: ${{ github.run_id }}
            body: |
              kernel for M10
