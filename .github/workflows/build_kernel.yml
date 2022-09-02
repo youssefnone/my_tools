@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  Kernel_Link: https://github.com/n7105/android_kernel_samsung_m10lte -b stock
+  Kernel_Link: https://github.com/n7105/android_kernel_samsung_m10lte
   GCC: https://github.com/adekmaulana/aarch64-linux-android
   
 jobs:
