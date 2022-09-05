@@ -17,10 +17,10 @@ jobs:
                                
        - name: Build
          run: |
-              sudo apt update && sudo apt install git wget make ccache zip -y
+              sudo apt update && sudo apt install tmate git wget make ccache zip -y
               cd && git clone --depth=1 $Kernel_Link kernel && cd kernel
               git clone --depth=1 $GCC /opt/gcc
-              export ANDROID_MAJOR_VERSION=q && bash b*.sh                          
+              export ANDROID_MAJOR_VERSION=q && tmate                       
               
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
