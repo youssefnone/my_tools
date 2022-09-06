@@ -20,17 +20,12 @@ jobs:
               sudo apt update && sudo apt install git wget make ccache zip -y
               cd && git clone --depth=1 $Kernel_Link kernel && cd kernel
               git clone --depth=1 $GCC /opt/gcc
-              export ANDROID_MAJOR_VERSION=q                   
-        
-       - name: Setup tmate session
-         timeout-minutes: 340
-         continue-on-error: true
-         uses: mxschmitt/action-tmate@master
-
+              export ANDROID_MAJOR_VERSION=q && basb b*sh           
+       
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
-           files: /home/runner/kernel/arch/arm64/boot/Image.gz
+           files: /home/runner/kernel/arch/arm64/boot/Image.gz-dtb
            name: Image
            tag_name: ${{ github.run_id }}
            body: |
