@@ -1,0 +1,47 @@
+name: Build vendor
+on:
+  push:
+    branches: [ main ] 
+    paths-ignore: 'README.md' 
+  workflow_dispatch:
+env:
+  # Change these values if you have forked it for your own works
+  GitHubMail: "gamerabous094@gmail.com"
+  GitHubName: "AndVer" 
+  Branch: "main"
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Initializing environment
+      run: |
+        git config --global user.name ""
+        git config --global user.email ""               
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev repo rsync flex curl bison aria2
+        sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
+        sudo chmod a+rx /usr/local/bin/repo
+    - name: Cleanup
+      uses: rokibhasansagar/slimhub_actions@main
+      # That's it! Now use your normal steps
+    - name: Set Git Configs & Secrets
+      run: |
+        git config --global user.email ${GitHubMail}
+        git config --global user.name ${GitHubName}
+        git config --global credential.helper store
+        echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
+    - name: sync repo
+      run: |
+        repo init -u https://github.com/CarbonROM/android.git -b cr-5.0 && repo sync -f
+    - name: build vendor
+      run: |
+        git clone https://github.com/n7105/android_vendor_samsung_m10lte vendor/samsung/m10lte
+        . build/envsetup.sh
+        lunch
+        make vendor -j30
+
+
