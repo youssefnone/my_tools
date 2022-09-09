@@ -36,7 +36,7 @@ jobs:
         echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
     - name: sync repo
       run: |
-        repo init -u https://github.com/CarbonROM/android.git -b cr-5.0 && repo sync -j500
+        repo init -u https://github.com/CyanogenMod/android -b cm-7.0.0 && repo sync -j500
     - name: build vendor
       run: |
         git clone https://github.com/n7105/android_vendor_samsung_m10lte vendor/samsung/m10lte
