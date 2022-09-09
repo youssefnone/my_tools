@@ -25,7 +25,7 @@ jobs:
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
-           files: /home/runner/kernel/arch/arm64/boot/Image.gz /home/runner/kernel/arch/arm64/boot/dtb.img
+           files: /home/runner/kernel/out/arch/arm64/boot/Image.gz /home/runner/kernel/out/arch/arm64/boot/dtb.img
            name: Image
            tag_name: ${{ github.run_id }}
            body: |
