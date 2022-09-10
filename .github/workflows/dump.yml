@@ -29,8 +29,10 @@ jobs:
               zip output.zip ${{ github.event.inputs.PART }}*
 
        - name: Save
-         uses: actions/upload-artifact@v3
+         uses: softprops/action-gh-release@v1
          with:
-            name: output.zip
-            path: /home/runner/work/my_tools/my_tools/fw/output.zip
-            retention-days: 5
+           files: /home/runner/work/my_tools/my_tools/fw/output.zip                     
+           name: ${{ github.event.inputs.PART }}
+           tag_name: ${{ github.run_id }}                    
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
