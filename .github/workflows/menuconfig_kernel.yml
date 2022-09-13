@@ -35,7 +35,7 @@ jobs:
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
-           files: /home/runner/kernel/arch/arm64/boot/Image.gz
+           files: /home/runner/kernel/.config
            name: menuconfig
            tag_name: ${{ github.run_id }}
            body: |
