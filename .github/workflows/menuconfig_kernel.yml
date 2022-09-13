@@ -1,1 +1,45 @@
+name: menuconfig kernel (gcc)
+
+on:
+  workflow_dispatch:
+
+env:
+  Kernel_Link: https://github.com/youssefnone/android_kernel_samsung_exynos7870 -b twrp
+  GCC: https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9
+  
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@master
+                               
+       - name: Build
+         run: |
+              sudo apt update && sudo apt install git wget make ccache zip -y
+              cd && git clone --depth=1 $Kernel_Link kernel && cd kernel
+              git clone --depth=1 $GCC /opt/gcc
+              export ANDROID_MAJOR_VERSION=q 
+
+       - uses: fastai/workflows/ssh@master
+         with:
+           ssh_key: ${{ secrets.SSH_KEY }}
+           key_file: id_ecdsa  
+  
+       - name: Setup tmate session
+         timeout-minutes: 340
+         continue-on-error: true
+         uses: mxschmitt/action-tmate@master
+
+       - name: Upload to Release
+         uses: softprops/action-gh-release@v1
+         with:
+           files: /home/runner/kernel/.config
+           name: menuconfig
+           tag_name: ${{ github.run_id }}
+           body: |
+             menuconfig for M10
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
