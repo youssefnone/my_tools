@@ -20,14 +20,12 @@ jobs:
               sudo apt update && sudo apt install git wget make ccache zip -y
               cd && git clone --depth=1 $Kernel_Link kernel && cd kernel
               git clone --depth=1 $GCC /opt/gcc
-              export ANDROID_MAJOR_VERSION=q && make m10lte_defconfig
-              rm -rf .config && curl -L -o .config https://github.com/youssefnone/my_tools/releases/download/3044786932/default.config 
-              make -j100
+              bash buil*sh
        
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
-           files: /home/runner/kernel/arch/arm64/boot/Image.gz             
+           files: /home/runner/kernel/kernel.zip          
            name: kernel
            tag_name: ${{ github.run_id }}
            body: |
