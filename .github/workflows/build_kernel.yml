@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  Kernel_Link: https://github.com/youssefnone/android_kernel_samsung_m10lte
+  Kernel_Link: https://github.com/youssefnone/android_kernel_samsung_exynos7870 -b twrp
   GCC: https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9
   
 jobs:
@@ -20,15 +20,17 @@ jobs:
               sudo apt update && sudo apt install git wget make ccache zip -y
               cd && git clone --depth=1 $Kernel_Link kernel && cd kernel
               git clone --depth=1 $GCC /opt/gcc
-              bash buil*sh
+              bash buil*sh 
        
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
-           files: /home/runner/kernel/kernel.zip          
+           files: |
+                /home/runner/kernel/out/arch/arm64/boot/Image.gz
+                /home/runner/kernel/out/arch/arm64/boot/dtb.img
            name: kernel
            tag_name: ${{ github.run_id }}
            body: |
-             kernel for M10
+             kernel for j7y17lte
          env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
