@@ -31,6 +31,6 @@ jobs:
            name: kernel
            tag_name: ${{ github.run_id }}
            body: |
-             kernel for j7y17lte
+             kernel for j6lte
          env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
