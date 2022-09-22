@@ -20,14 +20,16 @@ jobs:
               sudo apt update && sudo apt install git wget make ccache zip -y
               cd && git clone --depth=1 $Kernel_Link kernel && cd kernel
               git clone --depth=1 $GCC /opt/gcc
-              bash buil*sh 
+              export PLATFORM_VERSION=10 && export ANDROID_MAJOR_VERSION=q && export ARCH=arm64
+              export CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- && make exynos7870-m10lte_defconfig
+              export ANDROID_MAJOR_VERSION=q && make -j40
        
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
            files: |
-                /home/runner/kernel/out/arch/arm64/boot/Image.gz
-                /home/runner/kernel/out/arch/arm64/boot/dtb.img
+                /home/runner/kernel/arch/arm64/boot/Image.gz
+                /home/runner/kernel/arch/arm64/boot/dtb.img
            name: kernel
            tag_name: ${{ github.run_id }}
            body: |
