@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  Kernel_Link: https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870 -b aosp
+  Kernel_Link: https://github.com/youssefnone/android_kernel_samsung_exynos7870 -b aosp
   GCC: https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9
   
 jobs:
