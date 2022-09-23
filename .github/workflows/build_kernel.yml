@@ -21,7 +21,7 @@ jobs:
               cd && git clone --depth=1 $Kernel_Link kernel && cd kernel
               git clone --depth=1 $GCC /opt/gcc
               export PLATFORM_VERSION=10 && export ANDROID_MAJOR_VERSION=q && export ARCH=arm64
-              export CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- && make exynos7870-j6lte_defconfig
+              export CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- && make exynos7870-m10lte_defconfig
               export ANDROID_MAJOR_VERSION=q && make -j10
        
        - name: Upload to Release
