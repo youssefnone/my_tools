@@ -23,8 +23,8 @@ jobs:
               
        - name: Build
          run: |
-              make ARCH=arm64 CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- ANDROID_PLATFORM_VERSION=10 ANDROID_MAJOR_VERSION=q  exynos7870-m10lte_defconfig
-              make ARCH=arm64 CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- ANDROID_PLATFORM_VERSION=10 ANDROID_MAJOR_VERSION=q
+              make ARCH=arm64 CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- ANDROID_PLATFORM_VERSION=10 ANDROID_MAJOR_VERSION=q O=./out exynos7870-m10lte_defconfig
+              make ARCH=arm64 CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- ANDROID_PLATFORM_VERSION=10 ANDROID_MAJOR_VERSION=q O=./out -j70
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
