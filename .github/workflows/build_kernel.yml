@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  Kernel_Link: https://github.com/youssefnone/android_kernel_samsung_exynos7870 -b aosp
+  Kernel_Link: https://github.com/youssefnone/android_kernel_samsung_exynos7870 -b main
   GCC: https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9
   
 jobs:
@@ -15,15 +15,16 @@ jobs:
        - name: Checkout
          uses: actions/checkout@master
                                
-       - name: Build
+       - name: Clone
          run: |
               sudo apt update && sudo apt install git wget make ccache zip -y
               cd && git clone --depth=1 $Kernel_Link kernel && cd kernel
               git clone --depth=1 $GCC /opt/gcc
-              export PLATFORM_VERSION=10 && export ANDROID_MAJOR_VERSION=q && export ARCH=arm64
-              export CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- && make exynos7870-m10lte_defconfig
-              export ANDROID_MAJOR_VERSION=q && make -j10
-       
+              
+       - name: Build
+         run: |
+              make ARCH=arm64 CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- exynos7870-m10lte_defconfig
+              make ARCH=arm64 CROSS_COMPILE=/opt/gcc/bin/aarch64-linux-android- 
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
