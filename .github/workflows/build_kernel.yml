@@ -27,8 +27,8 @@ jobs:
          uses: softprops/action-gh-release@v1
          with:
            files: |
-                /home/runner/kernel/arch/arm64/boot/Image.gz
-                /home/runner/kernel/arch/arm64/boot/dtb.img
+                /home/runner/kernel/out/arch/arm64/boot/Image.gz
+                /home/runner/kernel/out/arch/arm64/boot/dtb.img
            name: kernel
            tag_name: ${{ github.run_id }}
            body: |
