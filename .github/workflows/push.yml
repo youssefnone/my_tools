@@ -5,7 +5,7 @@ on:
 
 env:
   GLINK: https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870 -b twrp
-  PLINK: https://youssefnone:${{ secrets.GITHUB_TOKEN }}@github.com/youssefnone/recovery_kernel_samsung_m10lte
+  PLINK: https://youssefnone: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@github.com/youssefnone/recovery_kernel_samsung_m10lte
 
 jobs:
   build:
