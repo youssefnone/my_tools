@@ -1,4 +1,4 @@
-name: Build kernel (gcc)
+name: push
 
 on:
   workflow_dispatch:
