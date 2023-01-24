@@ -1,0 +1,25 @@
+name: Build kernel (gcc)
+
+on:
+  workflow_dispatch:
+
+env:
+  GLINK: https://github.com/samsungexynos7870/android_kernel_samsung_exynos7870 -b twrp
+  PLINK: https://youssefnone:${{ secrets.GITHUB_TOKEN }}@github.com/youssefnone/recovery_kernel_samsung_m10lte
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@master
+                               
+       - name: Clone
+         run: |
+              sudo apt update && sudo apt install git -y
+              cd && git clone --depth=1 $GLINK work && cd work
+              rm -rf .git && git init && git add . && git commit -m "init"
+              git branch -M main
+              git remote add origin $PLINK && git push -u origin main
+ 
