@@ -18,7 +18,9 @@ jobs:
        - name: Clone
          run: |
               sudo apt update && sudo apt install git -y
-              cd && git clone --depth=1 $GLINK work123 && cd work123
+              git config --global user.email "gamerabous095@hotmail.com"
+              git config --global user.name "youssefnone"
+              git clone --depth=1 $GLINK work123 && cd work123
               rm -rf .git .gitignore && git init && git add . && git commit -m "init"
               git branch -M main
               git remote add origin $PLINK && git push -u origin main
