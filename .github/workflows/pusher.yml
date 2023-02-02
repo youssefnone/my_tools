@@ -21,13 +21,13 @@ jobs:
               git config --global user.email "gamerabous095@hotmail.com"
               git config --global user.name "youssefnone"
               cd
-              mkdir work; cd work
+              mkdir worker; cd worker
               wget -c $GLINK -O $NAME
 
        - name: Upload to Release
          uses: softprops/action-gh-release@v1
          with:
-           files: /home/runner/work/*.zip           
+           files: /home/runner/worker/*.zip           
            name: rom
            tag_name: ${{ github.run_id }}
            body: |
