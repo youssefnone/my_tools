@@ -1,0 +1,36 @@
+name: pusher
+
+on:
+  workflow_dispatch:
+
+env:
+  GLINK: https://oshi.at/dfNc
+  NAME: aex.zip
+  
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@master
+                               
+       - name: Clone
+         run: |
+              sudo apt update && sudo apt install wget -y
+              git config --global user.email "gamerabous095@hotmail.com"
+              git config --global user.name "youssefnone"
+              cd
+              mkdir work; cd work
+              wget -c $GLINK -O $NAME
+
+       - name: Upload to Release
+         uses: softprops/action-gh-release@v1
+         with:
+           files: /home/runner/work/*.zip           
+           name: rom
+           tag_name: ${{ github.run_id }}
+           body: |
+             rom.zip
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
