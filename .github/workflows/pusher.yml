@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  GLINK: https://oshi.at/BRTi
-  NAME: crdroid-10-m10lte.zip
+  GLINK: https://oshi.at/csyS
+  NAME: crdroid-10-m10lte-01.zip
   
 jobs:
   build:
