@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  GLINK: https://oshi.at/FkuB
-  NAME: carbonrom-10-m10lte-00.zip
+  GLINK: "https://downloads.sourceforge.net/project/projectnone/CARBON-CR-8.0-PAX-UNOFFICIAL-m10lte-20230217-0921.zip?ts=gAAAAABj8NXuBzNkSmn4GC4Q-yu861IRWmye5wNAyw87vggpDxKJe4XWhgi_0B9zyWf1_9qzMzpGtBtTeNIx4xZAhJmbxO2fsw%3D%3D&use_mirror=master&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fprojectnone%2Ffiles%2F"
+  NAME: carbonrom-10-m10lte-01.zip
   
 jobs:
   build:
